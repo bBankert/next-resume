@@ -1,0 +1,32 @@
+{
+    "id": 3,
+    "company": "Select Medical",
+    "title": "Software Engineer II",
+    "details": [
+        "Developed and enhance web applications written in ASP.NET MVC and Sitecore",
+        "Develop and Enhance the API for form submissions",
+        "Write SQL queries for views and stored procdures for the API to execute",
+        "Worked with team members in a Agile methodology",
+        "Write Powershell powershell for automation of back-end tasks in Sitecore",
+        "Write SSIS Packages automate ETL tasks",
+        "Use TFS for source control"
+    ],
+    "technologies": [
+        {
+            "name": ".NET",
+            "link": "https://learn.microsoft.com/en-us/dotnet/core/introduction"
+        },
+        {
+            "name": "SQL-Server",
+            "link": "https://www.microsoft.com/en-us/sql-server/sql-server-2019"
+        },
+        {
+            "name": "jQuery",
+            "link": "https://jquery.com/"
+        },
+        {
+            "name": "Sitecore",
+            "link": "https://www.sitecore.com/"
+        }
+    ]
+}
