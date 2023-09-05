@@ -1,0 +1,30 @@
+{
+    "id": 2,
+    "company": "Members 1st Federal Credit Union",
+    "title": "Senior Software Engineer",
+    "details": [
+        "Setup CI/CD through Azure DevOps pipelines",
+        "Upgraded existing applications to .NET 6 fom .NET Framework and .NET Core",
+        "Bug fixes in the Native Android App",
+        "Containerized applications through Docker and Devcontainers",
+        "Moved applications from internal into Azure"
+    ],
+    "technologies": [
+        {
+            "name": ".NET",
+            "link": "https://learn.microsoft.com/en-us/dotnet/core/introduction"
+        },
+        {
+            "name": "SQL-Server",
+            "link": "https://www.microsoft.com/en-us/sql-server/sql-server-2019"
+        },
+        {
+            "name": "Angular",
+            "link": "https://angular.io/"
+        },
+        {
+            "name": "Docker",
+            "link": "https://www.docker.com/"
+        }
+    ]
+}

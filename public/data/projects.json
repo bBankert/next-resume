@@ -1,0 +1,33 @@
+{
+    "previousProjects": [
+        {
+            "id": 1,
+            "name": "UML Editor",
+            "description": "My senior capstone project, that was built in Angular to teach students the agile methodology and devlopment lifecycle. \n We developed this in an agile scrum approach, learning about unit testing and CI/CD as well. The tests were run with Karma and \nthe tests were ran as part of the CI/CD pipeline in Jenkins",
+            "liveLink": "https://gwca-uml.firebaseapp.com",
+            "sourceLink": "https://github.com/mucsci-students/2019fa-420-GWCA"
+        },
+        {
+            "id": 2,
+            "name": "React Budget App",
+            "description": "When I was first learning React, a common issue I ran into was the complexity around handling props and passing data between children and parent components. This generally led to me passing props down multiple layers (props drilling), which is generally considered bad practice. The resolution of this was to learn about state management, this project takes advantage of React's useContext hook to allow for small scale state management. I would later use this knowledge to learn Redux & RTK Query.",
+            "liveLink": null,
+            "sourceLink": "https://github.com/bBankert/react-budget-app"
+        },
+        {
+            "id": 3,
+            "name": "Flutter PoC",
+            "description": "With the increasing interest in hybrid platforms such as React Native, Xamarin/MAUI, Ionic. I researched the pros and cons of each, and most of the other hybrid frameworks had one common issue, where the 'one language' was not true. Most of the time, it was the main language and then the native language to accompany it. Flutter only used dart, which made me research the difficulty of development and learning. This project was my playground to learn Flutter. ",
+            "liveLink": null,
+            "sourceLink": "https://github.com/bBankert/FlutterPoC"
+        },
+        {
+            "id": 4,
+            "name": "React with gRPC",
+            "description": "Now that HTTP/2 is a standard and the performance is much better than regular REST APIs. This project is going to try and learn any difficulties surrounding gRPC integration with React (front-end) and Node (back-end). The project will be taking advantage of gRPC-Web to allow for communication with HTTP/1.1 and conversion to HTTP/2",
+            "sourceLink": "https://github.com/bBankert/grpc-comparison"
+        }
+        
+    ],
+    "upcomingProjects": []
+}

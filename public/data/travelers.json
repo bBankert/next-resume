@@ -1,0 +1,46 @@
+{
+    "id": 1,
+    "company": "Travelers Insurance",
+    "title": "Tech Lead",
+    "details": [
+        "Develop new features using React Native for both Android and IOS",
+        "Create and modify AWS Lambdas for use by both the native app and web app using Node.js and Mongo DB",
+        "Act as point of contact and mentor junior developers",
+        "Administer code reviews for other developers",
+        "Lead committees for the circle/department"
+    ],
+    "technologies": [
+        {
+            "name": "React-Native",
+            "link": "https://reactnative.dev/"
+        },
+        {
+            "name": "React",
+            "link": "https://reactjs.org/"
+        },
+        {
+            "name": "Redux",
+            "link": "https://redux.js.org/"
+        },
+        {
+            "name": "Node.js",
+            "link": "https://nodejs.org/en/"
+        },
+        {
+            "name": "AWS",
+            "link": "https://aws.amazon.com/"
+        },
+        {
+            "name": "Mongo-DB",
+            "link": "https://www.mongodb.com/"
+        },
+        {
+            "name": "Jest",
+            "link": "https://jestjs.io/"
+        },
+        {
+            "name": "Sass",
+            "link": "https://sass-lang.com"
+        }
+    ]
+}
