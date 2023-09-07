@@ -16,6 +16,7 @@ export const fetchEducationData = async (): Promise<Array<School>> => {
     catch(exception: any){
         //actual logging would go here...
         console.log('Exception!',exception);
+        console.log('TODO Remove me!')
         throw new Error('Exception reading education json file')
     }
 }
