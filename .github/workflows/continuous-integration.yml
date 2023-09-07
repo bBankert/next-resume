@@ -6,6 +6,8 @@ on:
       - '**.ts'
       - '**.tsx'
       - '**.yml'
+  pull-request:
+      - 'main'
 jobs:
   build:
     runs-on: ubuntu-latest
