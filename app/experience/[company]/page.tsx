@@ -22,7 +22,7 @@ const titleFormatter = (route: string) => {
 export async function generateMetadata({
     params, searchParams
 }: ProfessionalExperiencePageProps,
-parent?: ResolvingMetadata): Promise<Metadata> {
+parent: ResolvingMetadata): Promise<Metadata> {
     const formattedCompanyName = titleFormatter(params.company);
 
     return {

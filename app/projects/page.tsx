@@ -18,7 +18,8 @@ const ProjectsPage = async () => {
             {previousProjects?.map(({ name, description, sourceLink, liveLink }) => (
                 <Card
                     leftTitle={name}
-                    leftTitleHeaderLevel={3}>
+                    leftTitleHeaderLevel={3}
+                    key={`previous-project-${name}`}>
                         <p>{description}</p>
                         <div className='link-container mt-4'>
                             <Link
@@ -46,7 +47,8 @@ const ProjectsPage = async () => {
                 upcomingProjects?.map(({ name, description }) => (
                     <Card
                         leftTitle={name}
-                        leftTitleHeaderLevel={3}>
+                        leftTitleHeaderLevel={3}
+                        key={`upcoming-project-${name}`}>
                             <p>{description}</p>
                     </Card>
                 
