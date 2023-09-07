@@ -16,7 +16,7 @@ describe('generateMetadata', () => {
                 company: 'some-company'
             },
             searchParams: {}
-        })
+        },Promise.resolve(TestDataFactory.generateResolvedMetadata()))
 
         expect(result).toEqual({
             title: 'Some Company experience',

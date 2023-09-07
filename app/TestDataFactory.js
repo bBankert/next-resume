@@ -92,3 +92,40 @@ export const generateMockProjectResponseData = (options = {}) => {
         ]
     }
 }
+
+export const generateResolvedMetadata = (options = {}) => {
+
+    return {
+        metadataBase: null,
+        title: null,
+        description: null,
+        applicationName: null,
+        authors: null,
+        generator: null,
+        keywords: null,
+        referrer: null,
+        themeColor: null,
+        colorScheme: null,
+        viewport: null,
+        creator: null,
+        publisher: null,
+        robots: null,
+        alternates: null,
+        icons: null,
+        openGraph: null,
+        manifest: null,
+        twitter: null,
+        verification: null,
+        appleWebApp: null,
+        formatDetection: null,
+        itunes: null,
+        abstract: null,
+        appLinks: null,
+        archives: null,
+        assets: null,
+        bookmarks: null,
+        category: null,
+        classification: null,
+        other: null
+    }
+}
