@@ -25,8 +25,6 @@ export async function generateMetadata({
 parent: ResolvingMetadata): Promise<Metadata> {
     const formattedCompanyName = titleFormatter(params.company);
 
-    console.log('Parent',parent)
-
     return {
         title: `${formattedCompanyName} experience`,
         description: `Brandon Bankert's experience at ${formattedCompanyName}`
