@@ -6,7 +6,8 @@ on:
       - '**.ts'
       - '**.tsx'
       - '**.yml'
-  pull-request:
+  pull_request:
+    branches:
       - 'main'
 jobs:
   build:
