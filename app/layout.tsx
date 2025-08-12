@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import AppBar from './components/appBar'
+import AppBar from './components/app-bar'
 import StoreProvider from '../libs/providers'
 import Footer from './components/footer'
 

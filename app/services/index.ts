@@ -1,1 +1,1 @@
-export * as ExperienceService from './experienceService'
+export * as ExperienceService from './experience-service'

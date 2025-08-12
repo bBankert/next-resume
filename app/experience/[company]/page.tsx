@@ -19,7 +19,7 @@ const titleFormatter = (route: string) => {
     return splitCompanyName.join(' ')
 }
 
-export async function generateMetadata(props: ProfessionalExperiencePageProps, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(props: ProfessionalExperiencePageProps, _: ResolvingMetadata): Promise<Metadata> {
     const params = await props.params;
     const formattedCompanyName = titleFormatter(params.company);
 
