@@ -17,14 +17,14 @@ import {
 } from 'react-icons/fa'
 
 import Image from 'next/image'
-import { ICON_CONSTANTS, TechnologyNames } from "./constants";
+import { ICON_CONSTANTS,TechNologyValues } from "./constants";
 
 /**
  * Get a technology icon from a given key
  * @param {TechnologyNames} technologyName - Key of a given technology name
  * @returns A technology icon
  */
-export const getTechnologyIcon = (technologyName: TechnologyNames): ReactNode => {
+export const getTechnologyIcon = (technologyName: TechNologyValues): ReactNode => {
     switch(technologyName.toLowerCase()){
         case ICON_CONSTANTS.reactNative:
         case ICON_CONSTANTS.react:

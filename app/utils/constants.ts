@@ -1,3 +1,4 @@
+import { ValueOf } from "next/dist/shared/lib/constants";
 
 export const ICON_CONSTANTS = {
     reactNative: 'react-native',
@@ -16,4 +17,4 @@ export const ICON_CONSTANTS = {
     sitecore: 'sitecore'
 } as const;
 
-export type TechnologyNames = keyof typeof ICON_CONSTANTS;
+export type TechNologyValues = ValueOf<typeof ICON_CONSTANTS>;
