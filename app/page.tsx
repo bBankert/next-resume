@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Card from './components/card';
 import LinkIcon from './components/link-icon';
+import React from "react";
 import { getTechnologyIcon } from './utils';
 
 const HomePage = () => {

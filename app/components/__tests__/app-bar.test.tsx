@@ -2,6 +2,7 @@ import AppBar from "../app-bar"
 import { screen } from '@testing-library/react';
 import * as TestUtils from "@/app/utils/test-utils";
 import userEvent from '@testing-library/user-event'
+import React from 'react'
 
 describe('appBar', () => {
 

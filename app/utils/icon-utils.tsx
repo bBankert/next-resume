@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import React, { ReactNode } from "react"
 import { 
     SiReact, 
     SiRedux, 
@@ -15,6 +15,7 @@ import { DiMsqlServer } from "react-icons/di";
 import { 
     FaAws
 } from 'react-icons/fa'
+
 import Image from 'next/image'
 import { ICON_CONSTANTS, TechnologyNames } from "./constants";
 

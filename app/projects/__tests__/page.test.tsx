@@ -20,7 +20,7 @@ describe('ProjectsPage', () => {
     })
 
     it('should fetch the project data', () => {
-        expect(mockedExperienceService.fetchProjectData).toBeCalledTimes(1);
+        expect(mockedExperienceService.fetchProjectData).toHaveBeenCalledTimes(1);
     })
 
     it('should render the project data', () => {

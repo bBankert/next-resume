@@ -3,7 +3,7 @@ import { DiMsqlServer } from "react-icons/di";
 import { 
     FaAws
 } from 'react-icons/fa'
-
+import React from "react";
 import Image from 'next/image'
 import { getTechnologyIcon } from ".."
 import { ICON_CONSTANTS } from "../constants"
