@@ -2,14 +2,14 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import AppBar from './components/appBar'
-import { Providers } from './redux/providers'
+import StoreProvider from '../libs/providers'
 import Footer from './components/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Brandon Bankert',
-  description: 'Brandon Bankert Resume Website',
+  description: 'Brandon Bankert Resume Website'
 }
 
 export default function RootLayout({
@@ -18,8 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    // Note: The next wrapper does not currently support next 13's new router, this is a workaround
-    <Providers>
+    <StoreProvider>
       <html lang="en">
         <body className={inter.className}>
           <div className='min-h-screen flex flex-col'>
@@ -35,6 +34,6 @@ export default function RootLayout({
           </div>
         </body>
       </html>
-    </Providers>
-  )
+    </StoreProvider>
+  );
 }

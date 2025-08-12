@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AppState } from '../store'
+import { AppState } from '../../../libs/store'
 
 export interface DrawerState {
     open: boolean

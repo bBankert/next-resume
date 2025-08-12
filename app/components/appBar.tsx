@@ -8,16 +8,17 @@ import {
     FaEnvelope, 
     FaHouse 
 } from "react-icons/fa6";
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectOpen, drawerSlice } from "../redux";
 import Link from 'next/link';
 import LinkIcon from './linkIcon';
+import { useAppDispatch } from '@/libs/hooks';
 const {
     setOpen
 } = drawerSlice.actions
 
 const AppBar = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const open = useSelector(selectOpen);
     const handleOpenNavbarClick = () => {
         dispatch(setOpen(true))

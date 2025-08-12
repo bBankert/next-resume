@@ -7,8 +7,8 @@ import { Technology } from '@/app/models'
 
 
 type ProfessionalExperiencePageProps = {
-    params: { company: string }
-    searchParams: { [key: string]: string | string[] | undefined }
+    params: Promise<{ company: string }>
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 const titleFormatter = (route: string) => {
@@ -19,10 +19,8 @@ const titleFormatter = (route: string) => {
     return splitCompanyName.join(' ')
 }
 
-export async function generateMetadata({
-    params, searchParams
-}: ProfessionalExperiencePageProps,
-parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(props: ProfessionalExperiencePageProps, parent: ResolvingMetadata): Promise<Metadata> {
+    const params = await props.params;
     const formattedCompanyName = titleFormatter(params.company);
 
     return {
@@ -31,12 +29,13 @@ parent: ResolvingMetadata): Promise<Metadata> {
     }
 }
 
-const ProfessionalExperiencePage = async ({ params }: ProfessionalExperiencePageProps) => {
+const ProfessionalExperiencePage = async (props: ProfessionalExperiencePageProps) => {
+    const params = await props.params;
     const { company } = params;
     const formattedCompanyName = titleFormatter(company)
 
     const { details, title, technologies } = await ExperienceService.fetchJobData(company);
-    
+
     return (
         <>
             <Card
