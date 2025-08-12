@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Card from "../components/card";
 import { ExperienceService } from "../services";
-
+import React from "react";
 
 const ProjectsPage = async () => {
 

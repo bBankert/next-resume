@@ -1,4 +1,5 @@
 import Card from "../components/card"
+import React from "react";
 import { ExperienceService } from "../services";
 import { School } from "../models";
 

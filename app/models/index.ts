@@ -1,3 +1,3 @@
 export * from './school'
-export * from './professionalExperience'
+export * from './professional-experience'
 export * from './project'

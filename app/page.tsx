@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import Card from './components/card';
-import LinkIcon from './components/linkIcon';
+import LinkIcon from './components/link-icon';
+import React from "react";
 import { getTechnologyIcon } from './utils';
+import { ICON_CONSTANTS } from './utils/constants';
 
 const HomePage = () => {
   return (
@@ -31,10 +33,10 @@ const HomePage = () => {
               <h4 className='text-xl'>Built with</h4>
             </div>
             <div className='icons-container flex flex-row'>
-              {getTechnologyIcon('next.js')}
-              {getTechnologyIcon('react')}
-              {getTechnologyIcon('jest')}
-              {getTechnologyIcon('redux')}
+              {getTechnologyIcon(ICON_CONSTANTS.nextJs)}
+              {getTechnologyIcon(ICON_CONSTANTS.react)}
+              {getTechnologyIcon(ICON_CONSTANTS.jest)}
+              {getTechnologyIcon(ICON_CONSTANTS.redux)}
             </div>
         </div>
       </Card>
@@ -58,38 +60,38 @@ const HomePage = () => {
           <LinkIcon
             linkUrl="https://reactjs.org"
             linkAriaLabel='Link to react website'
-            icon={getTechnologyIcon('react')}
+            icon={getTechnologyIcon(ICON_CONSTANTS.react)}
             />
           {/* The logos for React and React Native are the same, so just updating the link & aria-label */}
           <LinkIcon
             linkUrl="https://reactnative.dev/"
             linkAriaLabel='Link to react website'
-            icon={getTechnologyIcon('react-native')}
+            icon={getTechnologyIcon(ICON_CONSTANTS.react)}
             />
           <LinkIcon
             linkUrl="https://nodejs.org/en"
             linkAriaLabel='Link to node.js site'
-            icon={getTechnologyIcon('node.js')}
+            icon={getTechnologyIcon(ICON_CONSTANTS.node)}
             />
           <LinkIcon
             linkUrl="https://aws.amazon.com/"
             linkAriaLabel='Link to aws site'
-            icon={getTechnologyIcon('aws')}
+            icon={getTechnologyIcon(ICON_CONSTANTS.aws)}
             />
           <LinkIcon
             linkUrl="https://jestjs.io/"
             linkAriaLabel='Link to jest site'
-            icon={getTechnologyIcon('jest')}
+            icon={getTechnologyIcon(ICON_CONSTANTS.jest)}
             />
           <LinkIcon
             linkUrl="https://www.mongodb.com/"
             linkAriaLabel='Link to mongodb site'
-            icon={getTechnologyIcon('mongo-db')}
+            icon={getTechnologyIcon(ICON_CONSTANTS.mongoDb)}
             />
           <LinkIcon
             linkUrl="https://redux.js.org/"
             linkAriaLabel='Link to redux site'
-            icon={getTechnologyIcon('redux')}
+            icon={getTechnologyIcon(ICON_CONSTANTS.redux)}
             />
           
         </div>
@@ -99,24 +101,24 @@ const HomePage = () => {
           <LinkIcon
             linkUrl="https://dotnet.microsoft.com/en-us/"
             linkAriaLabel='Link to .NET website'
-            icon={getTechnologyIcon('.net')}
+            icon={getTechnologyIcon(ICON_CONSTANTS.dotNet)}
             />
           {/* The logos for React and React Native are the same, so just updating the link & aria-label */}
           <LinkIcon
             linkUrl="https://angular.io/"
             linkAriaLabel='Link to angular website'
-            icon={getTechnologyIcon('angular')}
+            icon={getTechnologyIcon(ICON_CONSTANTS.angular)}
             />
           <LinkIcon
-            icon={getTechnologyIcon('sql-server')}
+            icon={getTechnologyIcon(ICON_CONSTANTS.sqlServer)}
             />
           <LinkIcon
-            icon={getTechnologyIcon('docker')}
+            icon={getTechnologyIcon(ICON_CONSTANTS.docker)}
             linkAriaLabel='Link to docker website'
             linkUrl='https://www.docker.com/'
             />
             <LinkIcon
-            icon={getTechnologyIcon('sitecore')}
+            icon={getTechnologyIcon(ICON_CONSTANTS.sitecore)}
             linkAriaLabel='Link to sitecore website'
             linkUrl='https://www.sitecore.com/'
             />
