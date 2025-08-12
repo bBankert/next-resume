@@ -1,7 +1,7 @@
-import { TechnologyNames } from "../utils/constants"
+import { TechnologyValues } from "../utils/constants"
 
 export interface Technology {
-    name: TechnologyNames,
+    name: TechnologyValues,
     link: string
 }
 

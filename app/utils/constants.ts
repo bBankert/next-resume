@@ -17,4 +17,4 @@ export const ICON_CONSTANTS = {
     sitecore: 'sitecore'
 } as const;
 
-export type TechNologyValues = ValueOf<typeof ICON_CONSTANTS>;
+export type TechnologyValues = ValueOf<typeof ICON_CONSTANTS>;

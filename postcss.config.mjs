@@ -1,12 +1,3 @@
-// module.exports = {
-//   plugins: {
-//     tailwindcss: {},
-//     autoprefixer: {},
-//   },
-// }
-
-import autoprefixer from "autoprefixer"
-
 export const config = {
     plugins: {
         "@tailwindcss/postcss": {},

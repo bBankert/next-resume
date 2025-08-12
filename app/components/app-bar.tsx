@@ -9,13 +9,16 @@ import {
     FaHouse 
 } from "react-icons/fa6";
 import { useSelector } from 'react-redux'
-import { selectOpen, drawerSlice } from "../redux";
+import { drawerSlice } from "@/libs";
 import Link from 'next/link';
 import LinkIcon from './link-icon';
 import { useAppDispatch } from '@/libs/hooks';
 const {
     setOpen
 } = drawerSlice.actions
+const {
+    selectOpen
+} = drawerSlice.selectors;
 
 const AppBar = () => {
     const dispatch = useAppDispatch();
