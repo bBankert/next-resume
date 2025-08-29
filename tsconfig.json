@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "ES2022",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
-    "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -19,9 +22,20 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
-    }
+      "libs*": [
+        "./libs*"
+      ]
+    },
+    "skipLibCheck": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/components/__tests__/appBar.test.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "**/*.test.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

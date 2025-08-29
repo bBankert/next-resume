@@ -1,42 +1,52 @@
 import AppBar from "../app-bar"
-import { screen } from '@testing-library/react';
-import * as TestUtils from "@/app/utils/test-utils";
-import userEvent from '@testing-library/user-event'
+import { fireEvent, RenderResult, screen } from '@testing-library/react';
+import { describe, it, expect, vi, beforeAll, beforeEach } from 'vitest'
+import { renderWithProviders } from "../../utils/test-utils";
 import React from 'react'
+import { drawerSlice } from '../../../libs'
 
 describe('appBar', () => {
 
-    afterEach(() => {
-        jest.clearAllMocks();
+    let renderer: RenderResult;
+
+    //using spies as there is some jankiness, where rendering with providers multiple times
+    //causes it to duplicate the entire DOM...
+    const selectOpenSpy = vi.spyOn(drawerSlice.selectors, 'selectOpen');
+
+    beforeAll(() => {
+        renderer = renderWithProviders(<AppBar />, {
+            preloadedState: {
+                drawer: {
+                    open: false
+                }
+            }
+        })
+    })
+
+    beforeEach(() => {
+        selectOpenSpy.mockReturnValue(false);
     })
 
     describe('when the appbar is closed', () => {
-        beforeEach(() => {
-            TestUtils.renderWithProviders(<AppBar />,{
-                preloadedState: {
-                    drawer: {
-                        open: false
-                    }
-                }
-            })
-        })
-
         it('should render the toggle button', () => {
+            renderer.rerender(<AppBar />)
+
             const toggleButton = screen.queryByTestId('navbar-toggle');
-    
+
             expect(toggleButton).not.toBeNull();
         })
 
         describe('when the open menu button is clicked', () => {
-            it('should open the app bar', async () => {
-                const user = userEvent.setup();
-                const toggleButton = screen.queryByTestId('navbar-toggle');
-    
-                await user.click(toggleButton!!)
-    
+            it('should open the app bar', () => {
+                renderer.rerender(<AppBar />)
+
+                const toggleButton = screen.getByTestId('navbar-toggle');
+
+                fireEvent.click(toggleButton)
+
                 const navLinks = screen.queryByTestId('nav-links');
                 expect(navLinks?.classList).not.toContain('hidden')
-                
+
             })
         })
     })
@@ -44,55 +54,47 @@ describe('appBar', () => {
     describe('when the appbar is open', () => {
 
         beforeEach(() => {
-            TestUtils.renderWithProviders(<AppBar />,{
-                preloadedState: {
-                    drawer: {
-                        open: true
-                    }
-                }
-            })
+            selectOpenSpy.mockReturnValue(true);
         })
 
-
         describe('when the overlay is clicked', () => {
-            it('should close the appbar', async () => {
-                const user = userEvent.setup();
+            it('should close the appbar', () => {
+                renderer.rerender(<AppBar />)
 
-                const navbarOverlay = screen.queryByTestId('navbar-overlay');
-                
+                const navbarOverlay = screen.getByTestId('navbar-overlay');
 
-                await user.click(navbarOverlay!!);
 
-                const navLinks = screen.queryByTestId('nav-links');
+                fireEvent.click(navbarOverlay);
+
+                const navLinks = screen.getByTestId('nav-links');
 
                 expect(navLinks?.classList).toContain('hidden')
             });
         })
 
         describe('when a link is clicked', () => {
-            it('should close the appbar', async () => {
-                const user = userEvent.setup();
+            it('should close the appbar', () => {
+                renderer.rerender(<AppBar />)
 
-                const navLink = screen.queryByTestId('nav-link');
-                
-                await user.click(navLink!!);
+                const navLink = screen.getByTestId('nav-link');
 
-                const navLinks = screen.queryByTestId('nav-links');
+                fireEvent.click(navLink);
 
-                expect(navLinks?.classList).toContain('hidden')
+                const hiddenLinkSection = screen.getByTestId('nav-links')
+
+                expect(hiddenLinkSection?.classList).toContain('hidden')
             })
         })
 
         describe('when the close button is clicked', () => {
-            it('should close the appbar', async () => {
-                const user = userEvent.setup();
+            it('should close the appbar', () => {
+                renderer.rerender(<AppBar />)
 
-                const closeButton = screen.queryByTestId('navbar-close-button');
-                
+                const closeButton = screen.getByTestId('navbar-close-button');
 
-                await user.click(closeButton!!);
+                fireEvent.click(closeButton);
 
-                const navLinks = screen.queryByTestId('nav-links');
+                const navLinks = screen.getByTestId('nav-links');
 
                 expect(navLinks?.classList).toContain('hidden')
             })

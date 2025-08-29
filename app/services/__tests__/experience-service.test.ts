@@ -1,38 +1,39 @@
 import { ExperienceService } from '..'
-import path from 'path'
-import { promises as fsPromises  } from 'fs'
+import { vi, beforeEach, afterEach, describe, expect, it } from 'vitest'
+import path from 'node:path'
+import fs from 'node:fs/promises'
+import { School } from '../../models'
+import process from 'node:process';
 
-jest.mock('path')
-jest.mock('fs', () => ({
-    promises: {
-        readFile: jest.fn()
-    }
-}))
-
-jest.mock('process', () => ({
-    cwd: () => 'some-directory'
-}))
+vi.mock('node:path');
+vi.mock('node:fs/promises');
 
 const mockJsonFile = {
     foo: 'bar'
 }
 
-const mockPathJoin = path.join as jest.MockedFunction<typeof path.join>
-const mockReadFile = fsPromises.readFile as jest.MockedFunction<typeof fsPromises.readFile>
+const MOCK_WORKING_DIRECTORY = 'some-directory';
+
 
 describe('ExperienceService', () => {
+    const mockPathJoin = vi.mocked(path.join);
+    const mockReadFile = vi.mocked(fs.readFile);
+
+    //Note: Using a spy here as mocking out the entire process, breaks a lot
+    const processCurrentWorkingDirectiorySpy = vi.spyOn(process, 'cwd')
 
     beforeEach(() => {
-        mockPathJoin.mockReturnValue('some-full-path')
-        mockReadFile.mockResolvedValue(JSON.stringify(mockJsonFile))
+        mockPathJoin.mockReturnValue('some-full-path');
+        mockReadFile.mockResolvedValue(JSON.stringify(mockJsonFile));
+        processCurrentWorkingDirectiorySpy.mockReturnValue(MOCK_WORKING_DIRECTORY);
     })
 
     afterEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
     })
 
     describe('#fetchEducationData', () => {
-        let response: any;
+        let response: School[];
 
         beforeEach(async () => {
             response = await ExperienceService.fetchEducationData();
@@ -40,7 +41,7 @@ describe('ExperienceService', () => {
 
         it('should get the json file directory', () => {
             expect(mockPathJoin).toHaveBeenCalledTimes(1);
-            expect(mockPathJoin).toHaveBeenNthCalledWith(1,'some-directory','public','data')
+            expect(mockPathJoin).toHaveBeenNthCalledWith(1,MOCK_WORKING_DIRECTORY,'public','data')
         })
 
         it('should read the json file', () => {
@@ -77,7 +78,7 @@ describe('ExperienceService', () => {
 
         it('should get the json file directory', () => {
             expect(mockPathJoin).toHaveBeenCalledTimes(1);
-            expect(mockPathJoin).toHaveBeenNthCalledWith(1,'some-directory','public','data')
+            expect(mockPathJoin).toHaveBeenNthCalledWith(1,MOCK_WORKING_DIRECTORY,'public','data')
         })
 
         it('should read the json file', () => {
@@ -114,7 +115,7 @@ describe('ExperienceService', () => {
 
         it('should get the json file directory', () => {
             expect(mockPathJoin).toHaveBeenCalledTimes(1);
-            expect(mockPathJoin).toHaveBeenNthCalledWith(1,'some-directory','public','data')
+            expect(mockPathJoin).toHaveBeenNthCalledWith(1,MOCK_WORKING_DIRECTORY,'public','data')
         })
 
         it('should read the json file', () => {

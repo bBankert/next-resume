@@ -1,22 +1,24 @@
 import ProjectsPage from "../page"
 import { RenderResult, render, screen } from "@testing-library/react"
 import { ExperienceService } from '../../services';
-import * as TestDataFactory from '@/app/TestDataFactory';
+import { vi, beforeEach, afterEach, describe, it, expect } from 'vitest';
+import { generateMockProjectResponseData } from "../../test-data-factory";
 
-const mockProjectData = TestDataFactory.generateMockProjectResponseData();
-jest.mock('../../services')
+const mockProjectData = generateMockProjectResponseData();
+vi.mock('../../services')
 
-const mockedExperienceService = ExperienceService as jest.Mocked<typeof ExperienceService>
-
-let renderApi: RenderResult;
 describe('ProjectsPage', () => {
+    const mockedExperienceService = vi.mocked(ExperienceService);
+    let renderer: RenderResult;
     
     beforeEach(async () => {
         mockedExperienceService.fetchProjectData.mockResolvedValue(mockProjectData);
 
-        //Note: Async rendering is not fully supported yet, this is a workaround
-        //discussion: https://github.com/testing-library/react-testing-library/issues/1209
-        renderApi = render(await (async () => await ProjectsPage())())
+        renderer = render(await ProjectsPage());
+    })
+
+    afterEach(() => {
+        renderer.unmount();
     })
 
     it('should fetch the project data', () => {
@@ -24,17 +26,21 @@ describe('ProjectsPage', () => {
     })
 
     it('should render the project data', () => {
-        expect(screen.queryByText('some upcoming project')).toBeInTheDocument();
-        expect(screen.queryByText('some previous project')).toBeInTheDocument();
+        expect(screen.queryByText('some upcoming project')).not.toBeNull();
+        expect(screen.queryByText('some previous project')).not.toBeNull();
     })
 
-    describe('when the prior projects do not have a live link', () => {
+    describe('when the prior projects does not have a live link', () => {
         const mockProjectDataWithoutLiveLink = {
             ...mockProjectData,
             previousProjects: [
                 {
-                    ...mockProjectData.previousProjects[0],
-                    liveLink: null
+                    ...(mockProjectData.previousProjects?.[0] ?? {
+                        sourceLink: '',
+                        name: '',
+                        description: '',
+                    }),
+                    liveLink: undefined,
                 }
             ]
         }
@@ -43,13 +49,11 @@ describe('ProjectsPage', () => {
 
             mockedExperienceService.fetchProjectData.mockResolvedValue(mockProjectDataWithoutLiveLink);
 
-            //Note: Async rendering is not fully supported yet, this is a workaround
-            //discussion: https://github.com/testing-library/react-testing-library/issues/1209
-            renderApi.rerender(await (async () => await ProjectsPage())())
+            renderer.rerender(await ProjectsPage());
         })
 
         it('should not render the live link', () => {
-            expect(screen.queryByText('Live Link')).not.toBeInTheDocument();
+            expect(screen.queryByText('Live Link')).toBeNull();
         })
     })
 
@@ -63,9 +67,7 @@ describe('ProjectsPage', () => {
 
             mockedExperienceService.fetchProjectData.mockResolvedValue(mockProjectDataWithoutUpcomingProjects);
 
-            //Note: Async rendering is not fully supported yet, this is a workaround
-            //discussion: https://github.com/testing-library/react-testing-library/issues/1209
-            renderApi.rerender(await (async () => await ProjectsPage())())
+            renderer.rerender(await ProjectsPage());
         })
 
         it('should render the "upcoming projects" default card', () => {

@@ -1,26 +1,31 @@
 import EducationPage from "../page"
-import { render, screen } from "@testing-library/react"
+import { render, RenderResult, screen } from "@testing-library/react"
+import { vi, beforeEach, afterEach, describe, it, expect } from 'vitest'
 import { ExperienceService } from '../../services';
-import * as TestDataFactory from '@/app/TestDataFactory';
+import { generateMockEducationData } from '../../test-data-factory';
 
-const mockedEducationData = TestDataFactory.generateMockEducationData()
-const mockEducationDataResponse = [mockedEducationData];
-jest.mock('../../services')
-
-const mockedExperienceService = ExperienceService as jest.Mocked<typeof ExperienceService>
+vi.mock('../../services')
 
 describe('EducationPage', () => {
+    const mockedEducationData = generateMockEducationData()
+    const mockEducationDataResponse = [mockedEducationData];
+
+    const mockedExperienceService = vi.mocked(ExperienceService);
+
+    let renderer: RenderResult;
+
+
     beforeEach(async () => {
 
         mockedExperienceService.fetchEducationData.mockResolvedValue(mockEducationDataResponse)
-
-        //Note: Async rendering is not fully supported yet, this is a workaround
-        //discussion: https://github.com/testing-library/react-testing-library/issues/1209
-        render(await (async () => await EducationPage())())
+        
+        renderer = render(await EducationPage());
     })
 
     afterEach(() =>{
-        jest.clearAllMocks();
+        vi.clearAllMocks();
+        renderer.unmount();
+
     })
 
     it('should fetch the education data', () => {
@@ -28,6 +33,6 @@ describe('EducationPage', () => {
     })
 
     it('should render the education secions', () => {
-        expect(screen.queryByText(`${mockedEducationData.degree} - GPA: ${mockedEducationData.gpa}`)).toBeInTheDocument();
+        expect(screen.queryByText(`${mockedEducationData.degree} - GPA: ${mockedEducationData.gpa}`)).not.toBeNull();
     })
 })

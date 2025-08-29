@@ -1,60 +1,64 @@
 import ProfessionalExperiencePage, { generateMetadata } from "../page"
-import { ExperienceService } from "@/app/services"
-import * as TestDataFactory from '@/app/TestDataFactory';
-import { render, screen } from "@testing-library/react";
+import { vi, beforeEach, it, describe, afterEach, expect } from 'vitest'
+import { ExperienceService } from "../../../services"
+import { generateMockProfessionalExperience } from '../../../test-data-factory';
+import { render, RenderResult, screen } from "@testing-library/react";
+import { ResolvingMetadata } from "next";
 
-jest.mock('../../../services')
+vi.mock('../../../services')
 
-const mockedExperienceService = ExperienceService as jest.Mocked<typeof ExperienceService>
-
-const mockJobData = TestDataFactory.generateMockProfessionalExperience();
-
-describe('generateMetadata', () => {
-    it('should return page metadata based on the route params', async () => {
-        const result = await generateMetadata({
-            params: {
-                company: 'some-company'
-            },
-            searchParams: {}
-        },Promise.resolve(TestDataFactory.generateResolvedMetadata()))
-
-        expect(result).toEqual({
-            title: 'Some Company experience',
-            description: 'Brandon Bankert\'s experience at Some Company'
-        })
-    })
-})
+const mockJobData = generateMockProfessionalExperience();
 
 
 describe('ProfessionalExperiencePage', () => {
+    //TODO - Ideally, lets only render once if we need to
+    let wrapper: RenderResult;
+
+    const mockedExperienceService = vi.mocked(ExperienceService);
+
+    const formattedCompanyName = `${mockJobData.company.charAt(0).toUpperCase()}${mockJobData.company.slice(1)}`;
 
     beforeEach(async () => {
         mockedExperienceService.fetchJobData.mockResolvedValue(mockJobData)
 
-        //Note: Async rendering is not fully supported yet, this is a workaround
-        //discussion: https://github.com/testing-library/react-testing-library/issues/1209
-        render(await (async () => await ProfessionalExperiencePage({ 
+        //TODO - Remove type any
+        wrapper = render(await ProfessionalExperiencePage(({ 
             params: { 
-                company: 'some-company'
+                company: mockJobData.company
             }, 
             searchParams: {
                 foo: 'bar'
             } 
-        }))())
+        } as any)))
     })
 
     afterEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
+        wrapper.unmount();
     })
 
     it('should fetch the job data',() => {
         expect(mockedExperienceService.fetchJobData).toHaveBeenCalledTimes(1);
-        expect(mockedExperienceService.fetchJobData).toHaveBeenNthCalledWith(1,'some-company')
+        expect(mockedExperienceService.fetchJobData).toHaveBeenNthCalledWith(1,mockJobData.company)
     })
 
     it('should render the formatted company name', () => {
         expect(screen.queryByRole('heading',{
             level: 1
-        })?.textContent).toBe('Some Company')
+        })?.textContent).toBe(formattedCompanyName)
+    })
+
+    describe('generateMetadata', () => {
+        it('should return page metadata based on the route params', async () => {
+            const result = await generateMetadata({
+                params: {
+                    company: 'some company'
+                }} as any,{} as ResolvingMetadata)
+
+            expect(result).toEqual({
+                title: `${formattedCompanyName} experience`,
+                description: `Brandon Bankert's experience at ${formattedCompanyName}`
+            })
+        })
     })
 })

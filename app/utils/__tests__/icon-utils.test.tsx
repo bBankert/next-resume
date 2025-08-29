@@ -7,6 +7,7 @@ import React from "react";
 import Image from 'next/image'
 import { getTechnologyIcon } from ".."
 import { ICON_CONSTANTS } from "../constants"
+import { describe, it, expect } from 'vitest'
 
 describe('iconUtils', () => {
     describe('#getTechnologyIcon', () => {
