@@ -1,5 +1,5 @@
-import ProfessionalExperiencePage, { generateMetadata, ProfessionalExperiencePageProps } from "../page"
-import { vi, beforeEach, it, describe, afterEach, expect, beforeAll } from 'vitest'
+import ProfessionalExperiencePage, { generateMetadata } from "../page"
+import { vi, beforeEach, it, describe, afterEach, expect } from 'vitest'
 import { ExperienceService } from "../../../services"
 import { generateMockProfessionalExperience } from '../../../test-data-factory';
 import { render, RenderResult, screen } from "@testing-library/react";

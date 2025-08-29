@@ -1,6 +1,6 @@
 import LinkIcon from "../link-icon"
 import { render, RenderResult, screen } from "@testing-library/react"
-import { beforeEach, afterEach, describe, it, expect, beforeAll, afterAll } from 'vitest'
+import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import React from "react";
 
 

@@ -15,21 +15,8 @@ export default [
             'eslint:recommended', 
             'next', 
             'prettier', 
-            "plugin:jest/recommended",
             "plugin:react/recommended",
             "plugin:react-hooks/recommended",
-        ],
-        overrides: [
-            {
-                files: [
-                    "**/*.test.ts",
-                    "**/*.test.tsx"
-                ],
-                
-                env: {
-                    "jest": true
-                }
-            }
         ],
         rules: {
             "no-unused-vars": [
@@ -42,7 +29,7 @@ export default [
             ]
         },
         ignorePatterns: [
-            '**/TestDataFactory.js'
+            '**/test-data-factory.ts'
             
         ]
     })
