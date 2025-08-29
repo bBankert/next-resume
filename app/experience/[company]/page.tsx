@@ -1,12 +1,12 @@
-import Card from '@/app/components/card'
+import Card from '../../components/card'
 import { Metadata, ResolvingMetadata } from 'next'
 import React from 'react'
-import { getTechnologyIcon } from '@/app/utils'
-import { ExperienceService } from '@/app/services'
-import { Technology } from '@/app/models'
+import { getTechnologyIcon } from '../../utils'
+import { ExperienceService } from '../../services'
+import { Technology } from '../../models'
 
 
-type ProfessionalExperiencePageProps = {
+export type ProfessionalExperiencePageProps = {
     params: Promise<{ company: string }>
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
@@ -20,8 +20,8 @@ const titleFormatter = (route: string) => {
 }
 
 export async function generateMetadata(props: ProfessionalExperiencePageProps, _: ResolvingMetadata): Promise<Metadata> {
-    const params = await props.params;
-    const formattedCompanyName = titleFormatter(params.company);
+    const { company } = await props.params;
+    const formattedCompanyName = titleFormatter(company);
 
     return {
         title: `${formattedCompanyName} experience`,
@@ -30,8 +30,7 @@ export async function generateMetadata(props: ProfessionalExperiencePageProps, _
 }
 
 const ProfessionalExperiencePage = async (props: ProfessionalExperiencePageProps) => {
-    const params = await props.params;
-    const { company } = params;
+    const { company } = await props.params;
     const formattedCompanyName = titleFormatter(company)
 
     const { details, title, technologies } = await ExperienceService.fetchJobData(company);

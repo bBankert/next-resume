@@ -3,7 +3,6 @@ export interface Project {
     description: string
 }
 
-
 export interface PreviousProject extends Project {
     liveLink?: string,
     sourceLink: string

@@ -4,11 +4,11 @@ import {
     School 
 } from "../models"
 
-import path from 'path';
-import { promises as fs } from 'fs'
-import process from 'process'
+import path from 'node:path';
+import fs from 'node:fs/promises'
+import process from 'node:process'
 
-export const fetchEducationData = async (): Promise<Array<School>> => {
+export const fetchEducationData = async (): Promise<School[]> => {
     try{
         const directory = path.join(process.cwd(),'public','data')
         return JSON.parse(await fs.readFile(`${directory}/education.json`,'utf-8'));
